@@ -17,7 +17,7 @@ const config = {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   sql.connect(config).then(() => {
-    return sql.query`SELECT t1.GiaCongID, t2.TenNM AS NhaMay, t3.TenMGC AS MayGiaCong, t4.MaNV AS NhanVien, t5.MaBV AS BanVe, t1.SoLuong, t1.BatDauTG, t1.KetThucTG, t6.MaDH AS DonHang, t1.TrangThai, t1.GhiChu FROM dbo.GiaCong t1 LEFT JOIN dbo.NhaMay t2 ON t1.NhaMayID = t2.NhaMayID LEFT JOIN dbo.MayGiaCong t3 ON t1.MayGiaCongID = t3.MayGiaCongID LEFT JOIN dbo.NhanVien t4 ON t1.NhanVienID = t4.NhanVienID LEFT JOIN dbo.BanVe t5 ON t1.BanVeID = t5.BanVeID LEFT JOIN dbo.DonHang t6 ON t1.DonHangID = t6.DonHangID WHERE t1.NhaMayID=4 ORDER BY t1.BatDauTG DESC`
+    return sql.query`SELECT t1.GiaCongID, t2.TenNM AS NhaMay, t3.TenMGC AS MayGiaCong, t4.MaNV AS NhanVien, t5.MaBV AS BanVe, t1.SoLuong, t1.BatDauTG, t1.KetThucTG, t6.MaDH AS DonHang, t1.TrangThai, t1.GhiChu FROM dbo.GiaCongTest t1 LEFT JOIN dbo.NhaMay t2 ON t1.NhaMayID = t2.NhaMayID LEFT JOIN dbo.MayGiaCong t3 ON t1.MayGiaCongID = t3.MayGiaCongID LEFT JOIN dbo.NhanVien t4 ON t1.NhanVienID = t4.NhanVienID LEFT JOIN dbo.BanVe t5 ON t1.BanVeID = t5.BanVeID LEFT JOIN dbo.DonHang t6 ON t1.DonHangID = t6.DonHangID WHERE t1.NhaMayID=4 ORDER BY t1.BatDauTG DESC`
 }).then(result => {
     console.log(result.recordset);
     res.render("index",{ ketqua:result.recordset,title:"Quản Lý Gia Công"});
